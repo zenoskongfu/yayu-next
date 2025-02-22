@@ -1,0 +1,26 @@
+{
+	"name": "ssr-demo",
+	"version": "1.0.0",
+	"main": "index.js",
+	"scripts": {
+		"build:client": "webpack --config ./webpack.client.js",
+		"build:serve": "webpack  --config ./webpack.server.js",
+		"dev:serve": "nodemon ./build/server.bundle.js"
+	},
+	"author": "",
+	"license": "ISC",
+	"description": "",
+	"dependencies": {
+		"@babel/core": "^7.26.9",
+		"@babel/preset-env": "^7.26.9",
+		"@babel/preset-react": "^7.26.3",
+		"@types/node": "^22.13.5",
+		"babel-loader": "^9.2.1",
+		"express": "^4.21.2",
+		"nodemon": "^3.1.9",
+		"react": "^19.0.0",
+		"react-dom": "^19.0.0",
+		"webpack": "^5.98.0",
+		"webpack-cli": "^6.0.1"
+	}
+}
