@@ -3,6 +3,7 @@
 	"version": "1.0.0",
 	"main": "index.js",
 	"scripts": {
+		"build:ssg": "webpack --config ./webpack.ssg.js",
 		"build:client": "webpack --config ./webpack.client.js",
 		"build:serve": "webpack  --config ./webpack.server.js",
 		"dev:serve": "nodemon ./build/server.bundle.js"

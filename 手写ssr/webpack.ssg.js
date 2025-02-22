@@ -1,14 +1,14 @@
 const path = require("path");
-
+const cwd = process.cwd();
 /** @type {import('webpack').Configuration} */
 const config = {
 	mode: "development",
-	target: "node",
-	entry: "./server.js",
+	entry: "./ssg.js",
 	watch: true,
+	target: "node",
 	output: {
-		filename: "server.bundle.js",
-		path: path.resolve(__dirname, "build"),
+		filename: "ssg.bundle.js",
+		path: path.resolve(cwd, "./build"),
 	},
 	module: {
 		rules: [

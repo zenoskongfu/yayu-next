@@ -3,40 +3,19 @@ import { readFile } from "fs";
 import { readdir } from "fs/promises";
 import { join, resolve } from "path";
 import { renderToString } from "react-dom/server";
+import { generateHtml } from "./util";
 const app = express();
 app.use(express.static("public"));
+app.use(express.static("output"));
 
 const pwd = process.cwd();
 const pageDir = join(pwd, "./pages");
 const buildDir = join(pwd, "./build");
 
-const generateHtml = (content, windowData) => {
-	return `
-  <html>
-    <head>
-      <title>Tiny React SSR</title>
-    </head>
-    <body>
-      <div id="root">${content}</div>
-      <script>
-        window.__DATA__ = ${JSON.stringify(windowData)}
-      </script>
-			<script src="./client.bundle.js"></script>
-    <body>
-  </html>
-  `;
-};
-
 app.get(/.*$/, async (req, res) => {
 	const url = req.url;
 	let path = url.split("/").slice(-1)[0];
 	path = path ? path : "index";
-
-	// if (path.endsWith(".js")) {
-	// 	const file = resolve(buildDir, path);
-	// 	res.end(readFile(file));
-	// 	return;
-	// }
 
 	const pages = await readdir(pageDir);
 	if (pages.includes(`${path}.js`)) {
